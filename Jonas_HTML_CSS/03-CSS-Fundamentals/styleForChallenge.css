@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.4;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+.product {
+  border: 5px solid black;
+  width: 820px;
+  margin: 50px auto;
+  position: relative;
+}
+
+.product-title {
+  font-size: 22px;
+  text-align: center;
+  background-color: rgb(247, 243, 243);
+  text-transform: uppercase;
+  padding: 10px;
+}
+
+.shipping {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #777;
+}
+
+.shoesImag {
+  width: 200px;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.details-title {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+a:link,
+a:visited {
+  color: black;
+  margin-bottom: 30px;
+  display: inline-block;
+}
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
+.details-list {
+  list-style-type: square;
+  /* margin: 10px 20px; */
+}
+
+.details-list li {
+  margin: 10px 20px;
+}
+
+.add-cart {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+  background-color: black;
+  border: none;
+  padding: 15px;
+  width: 100%;
+  border-top: 4px solid black;
+}
+
+.button-conatiner {
+  height: 30px;
+}
+
+.add-cart:hover {
+  color: black;
+  border-color: black;
+  background-color: white;
+  /* border-top: 5px; */
+  cursor: pointer;
+}
+
+.sale {
+  color: white;
+  font-weight: bold;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  display: inline-block;
+  position: absolute;
+  padding: 8px 20px;
+  background-color: red;
+  top: -20px;
+  left: -45px;
+}
+
+.box-container {
+}
+
+.box {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-color: black;
+  margin-right: 10px;
+}
+
+.black {
+  background-color: black;
+}
+.blue {
+  background-color: blue;
+}
+.red {
+  background-color: red;
+}
+.yellow {
+  background-color: yellow;
+}
+.green {
+  background-color: green;
+}
+.brown {
+  background-color: brown;
+}
