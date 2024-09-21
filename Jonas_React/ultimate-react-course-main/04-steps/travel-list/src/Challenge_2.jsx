@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 const Challenge_2 = () => {
-  const [step, setStep] = useState(0);
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(null);
+  const [step, setStep] = useState(1);
 
   return (
     <div className="challenge_1">
@@ -17,42 +17,56 @@ const Challenge_2 = () => {
 };
 
 const Counter = ({ step, setStep, count, setCount }) => {
-  const handleStepup = () => {
-    setStep(step + count);
+  const handlestep = (e) => {
+    setStep(Number(e.target.value));
   };
-  const handleStepdown = () => {
-    setStep(step - count);
+
+  const handleInput = (e) => {
+    e.preventDefault();
+    const inputValue = e.target.value;
+
+    if (inputValue === "" || inputValue === "-" || !isNaN(Number(inputValue))) {
+      setCount(Number(e.target.value));
+    }
   };
+
   const handleCountup = () => {
-    setCount(count + 1);
+    setCount(count + step);
   };
   const handleCountdown = () => {
-    if (count > 1) setCount(count - 1);
+    setCount(count - step);
+  };
+
+  const handleReset = () => {
+    setCount(0);
+    setStep(1);
   };
 
   const date = new Date();
-  date.setDate(date.getDate() + step);
+  date.setDate(date.getDate() + count);
 
   return (
     <>
-      <input type="range" min="0" max="10" />
-      <br />
-      <button onClick={handleStepdown}>-</button>
-      count:{step}
-      <button onClick={handleStepup}>+</button>
+      <input type="range" min="0" max="10" value={step} onChange={handlestep} />
+      <span>{step}</span>
       <br />
       <button onClick={handleCountdown}>-</button>
-      Step:{count}
+      <input type="text" value={count} onChange={handleInput} />
       <button onClick={handleCountup}>+</button>
+      <br />
       <p>
         <span>
-          {step === 0
+          {count === 0
             ? "Today is "
-            : step > 0
-            ? `${step} days from today is `
-            : `${Math.abs(step)} days ago was `}
+            : count > 0
+            ? `${count} days from today is `
+            : `${Math.abs(count)} days ago was `}
         </span>
         <span>{date.toDateString()}</span>
+        <br />
+        {count !== 0 || step !== 1 ? (
+          <button onClick={handleReset}>Reset</button>
+        ) : null}
       </p>
     </>
   );
