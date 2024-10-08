@@ -7,8 +7,8 @@ import Challenge_1 from "./Challenge_1";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Challenge_1></Challenge_1>
-    {/* <App /> */}
+    {/* <Challenge_1></Challenge_1> */}
+    <App />
   </React.StrictMode>
 );
 
