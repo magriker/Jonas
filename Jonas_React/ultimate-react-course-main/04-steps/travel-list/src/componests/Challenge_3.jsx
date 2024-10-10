@@ -24,6 +24,8 @@ const Challenge_3 = () => {
         handleFriendService={handleFriendService}
         friemdService={friendService}
       ></FriendService>
+      You pay {}
+      {`$${bill}+ `}
     </>
   );
 };
