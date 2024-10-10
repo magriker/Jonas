@@ -14,6 +14,14 @@ const faqs = [
     title: "Do you ship to countries outside the EU?",
     text: "Excepturi velit laborum, perspiciatis nemo perferendis reiciendis aliquam possimus dolor sed! Dolore laborum ducimus veritatis facere molestias!",
   },
+  {
+    title: "Do you ship to countries outside the EU?",
+    text: "Excepturi velit laborum, perspiciatis nemo perferendis reiciendis aliquam possimus dolor sed! Dolore laborum ducimus veritatis facere molestias!",
+  },
+  {
+    title: "Do you ship to countries outside the EU?",
+    text: "Excepturi velit laborum, perspiciatis nemo perferendis reiciendis aliquam possimus dolor sed! Dolore laborum ducimus veritatis facere molestias!",
+  },
 ];
 
 export default function Exercise_1() {
@@ -25,10 +33,14 @@ export default function Exercise_1() {
 }
 
 const Accordion = ({ data }) => {
+  const [curOpen, setCurOpen] = useState(null);
+
   return (
     <div className="accordion">
       {data.map((item, index) => (
         <AccordionItem
+          curOpen={curOpen}
+          setCurOpen={setCurOpen}
           num={index}
           title={item.title}
           text={item.text}
@@ -39,19 +51,20 @@ const Accordion = ({ data }) => {
   );
 };
 
-const AccordionItem = ({ num, title, text }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
+const AccordionItem = ({ num, title, text, curOpen, setCurOpen }) => {
   const handleToggle = () => {
-    setIsOpen((isOpen) => !isOpen);
+    setCurOpen(num);
   };
 
   return (
-    <div className={`item ${isOpen ? "open" : ""}`} onClick={handleToggle}>
+    <div
+      className={`item ${curOpen === num ? "open" : ""}`}
+      onClick={handleToggle}
+    >
       <p className="number">{num < 9 ? `0${num + 1}` : num + 1}</p>
       <p className="title">{title}</p>
-      <p className="icon">{isOpen ? "-" : "+"}</p>
-      {isOpen && <div className="content-box">{text}</div>}
+      <p className="icon">{curOpen === num ? "-" : "+"}</p>
+      {curOpen === num && <div className="content-box">{text}</div>}
     </div>
   );
 };

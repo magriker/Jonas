@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import Challenge_1 from "./Challenge_1";
+import Challenge_3 from "../../travel-list/src/componests/Challenge_3";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
