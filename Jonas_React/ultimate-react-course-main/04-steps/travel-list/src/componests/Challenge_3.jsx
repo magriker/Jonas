@@ -2,8 +2,8 @@ import { useState } from "react";
 
 const Challenge_3 = () => {
   const [bill, setBill] = useState("");
-  const [service, setService] = useState("");
-  const [friendService, setFriendService] = useState("");
+  const [service, setService] = useState(0);
+  const [friendService, setFriendService] = useState(0);
 
   const tip = (service + friendService) / 2;
   const total = bill + tip;
@@ -25,8 +25,8 @@ const Challenge_3 = () => {
 
   const reset = () => {
     setBill("");
-    setService("");
-    setFriendService("");
+    setService(0);
+    setFriendService(0);
   };
   return (
     <>
@@ -34,10 +34,14 @@ const Challenge_3 = () => {
       <Service handleService={handleService} service={service}></Service>
       <FriendService
         handleFriendService={handleFriendService}
-        friemdService={friendService}
+        friendService={friendService}
       ></FriendService>
-      {bill !== null && <OutPut tip={tip} total={total} bill={bill}></OutPut>}
-      {bill !== null && <Resetbtn reset={reset}></Resetbtn>}
+      {bill > 0 && (
+        <>
+          <OutPut tip={tip} total={total} bill={bill}></OutPut>
+          <Resetbtn reset={reset}></Resetbtn>
+        </>
+      )}
     </>
   );
 };
