@@ -3,6 +3,8 @@ import { createRoot } from "react-dom/client";
 // import "./index.css";
 // import App from "./App.tsx";
 import StarRating from "./StarRating.tsx";
+import Challenge from "./Challenge.tsx";
+import "./challenge.css";
 
 function Test() {
   const [movieRating, setMovieRating] = useState(0);
@@ -23,11 +25,12 @@ function Test() {
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     {/* <App /> */}
-    <StarRating
+    {/* <StarRating
       maxRating={5}
-      message={["Terrible", "Bad", "Okay", "Good", "Amazing"]}
-    ></StarRating>
-    <StarRating size={24} color="red" defaultRating={3}></StarRating>
-    <Test></Test>
+      message={["Terrible", "Bad", "Okay", "Good", "Amazing"]} */}
+    {/* // ></StarRating> */}
+    {/* <StarRating size={24} color="red" defaultRating={3}></StarRating> */}
+    {/* <Test></Test> */}
+    <Challenge></Challenge>
   </StrictMode>
 );
