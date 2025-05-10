@@ -1,3 +1,5 @@
+import { Children } from "react";
+
 export default function Challenge() {
   return (
     <div>
@@ -32,6 +34,6 @@ export default function Challenge() {
   );
 }
 
-function TextExpander() {
-  return <div>TODO</div>;
+function TextExpander({ children }) {
+  return <div>{children}</div>;
 }
