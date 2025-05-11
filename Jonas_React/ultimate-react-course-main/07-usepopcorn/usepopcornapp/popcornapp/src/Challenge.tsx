@@ -1,4 +1,5 @@
-import { Children } from "react";
+import { Children, useState } from "react";
+import "./challenge.css";
 
 export default function Challenge() {
   return (
@@ -10,6 +11,7 @@ export default function Challenge() {
         are constantly venturing out into the cosmos to uncover its secrets and
         push the boundaries of what's possible.
       </TextExpander>
+      <br />
 
       <TextExpander
         collapsedNumWords={20}
@@ -23,6 +25,7 @@ export default function Challenge() {
         results are out of this world. Think about the first time humans stepped
         foot on the moon or when rovers were sent to roam around on Mars.
       </TextExpander>
+      <br />
 
       <TextExpander expanded={true} className="box">
         Space missions have given us incredible insights into our universe and
@@ -30,10 +33,37 @@ export default function Challenge() {
         travel is a pretty cool thing to think about. Who knows what we'll
         discover next!
       </TextExpander>
+      <br />
     </div>
   );
 }
 
-function TextExpander({ children }) {
-  return <div>{children}</div>;
+function TextExpander({
+  children,
+  collapsedNumWords = 10,
+  expandButtonText = "Show more",
+  collapseButtonText = "Show less",
+  expanded = false,
+}) {
+  const [expantion, setExpantion] = useState(expanded);
+  const content = children;
+  const splitContent =
+    children.split(" ").slice(0, collapsedNumWords).join(" ") + "...";
+
+  // const backgroundStyle = {
+  //   backgroundColor: "#e6eaf0",
+  // };
+
+  // const buttonStyle = {
+
+  // }
+
+  return (
+    <div>
+      {expantion ? content : splitContent}
+      <button onClick={() => setExpantion(!expantion)}>
+        {expantion ? collapseButtonText : expandButtonText}
+      </button>
+    </div>
+  );
 }
