@@ -56,13 +56,29 @@ const query = "seven samurai";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
   useEffect(function () {
     async function fetchmovies() {
-      const res = await fetch(
-        `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
-      );
-      const data = await res.json();
-      setMovies(data.Search);
+      try {
+        setIsLoading(true);
+        const res = await fetch(
+          `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+        );
+
+        if (!res.ok) throw new Error("Something went wrong with fetching");
+
+        const data = await res.json();
+        if (data.Response === "False") throw new Error("Movie not found");
+
+        setMovies(data.Search);
+      } catch (err) {
+        console.error(err.message);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     fetchmovies();
@@ -77,7 +93,14 @@ export default function App() {
       <Main>
         {/* <Box element={<MovieList movies={movies}></MovieList>}></Box> */}
         <Box>
-          <MovieList movies={movies}></MovieList>
+          {/* {isLoading ? (
+            <Loader></Loader>
+          ) : (
+            <MovieList movies={movies}></MovieList>
+          )} */}
+          {isLoading && <Loader></Loader>}
+          {!isLoading && !error && <MovieList movies={movies}></MovieList>}
+          {error && <ErrorMessage message={error}></ErrorMessage>}
         </Box>
         <Box>
           <Watchedsummery watched={watched}></Watchedsummery>
@@ -87,6 +110,19 @@ export default function App() {
     </>
   );
 }
+
+const Loader = () => {
+  return <p className="loader">Loading...</p>;
+};
+
+const ErrorMessage = ({ message }) => {
+  return (
+    <p className="error">
+      <span>☢️</span>
+      {message}
+    </p>
+  );
+};
 
 const NavBar = ({ children }) => {
   return (
