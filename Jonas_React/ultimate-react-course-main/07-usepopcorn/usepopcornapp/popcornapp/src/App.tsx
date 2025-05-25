@@ -113,9 +113,12 @@ export default function App() {
           if (data.Response === "False") throw new Error("Movie not found");
 
           setMovies(data.Search);
+          setError("");
         } catch (err) {
-          console.error(err.message);
-          setError(err.message);
+          if (err.name !== "AbortError") {
+            setError(err.message);
+            console.log(err.message);
+          }
         } finally {
           setIsLoading(false);
         }
@@ -126,7 +129,7 @@ export default function App() {
         setError("");
         return;
       }
-
+      handleCloseMovie();
       fetchmovies();
       return function () {
         controller.abort();
@@ -329,6 +332,25 @@ const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
     Director: director,
     Genre: genre,
   } = movie;
+
+  useEffect(
+    function () {
+      function callBack() {
+        document.addEventListener("keydown", function (e) {
+          if (e.code === "Escape") {
+            onCloseMovie();
+          }
+        });
+      }
+
+      document.addEventListener("keydown", callBack);
+
+      return function () {
+        document.removeEventListener("keydown", callBack);
+      };
+    },
+    [onCloseMovie]
+  );
 
   useEffect(
     function () {
