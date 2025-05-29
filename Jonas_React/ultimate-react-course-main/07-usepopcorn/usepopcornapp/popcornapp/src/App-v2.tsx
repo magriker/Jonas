@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import StarRating from "./StarRating";
 
 const tempMovieData = [
@@ -207,9 +207,24 @@ const Main = ({ children }) => {
 };
 
 const Search = ({ query, setQuery }) => {
+  // useEffect(function () {
+  //   const el = document.querySelector(".search");
+  //   el.focus();
+  // }, []);
+
+  const inputEl = useRef(null);
   useEffect(function () {
-    const el = document.querySelector(".search");
-    el.focus();
+    function callBack(e) {
+      if (e.code === "Enter") {
+        console.log(inputEl.current);
+        inputEl.current.focus();
+        setQuery("");
+      }
+    }
+
+    document.addEventListener("keydown", callBack);
+
+    return () => document.addEventListener("keydown", callBack);
   });
 
   return (
@@ -219,6 +234,7 @@ const Search = ({ query, setQuery }) => {
       placeholder="Search movies..."
       value={query}
       onChange={(e) => setQuery(e.target.value)}
+      ref={inputEl}
     />
   );
 };
