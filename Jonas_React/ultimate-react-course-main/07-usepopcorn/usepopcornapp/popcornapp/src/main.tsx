@@ -5,7 +5,7 @@ import "./index.css";
 import StarRating from "./StarRating.tsx";
 // import Challenge from "./Challenge.tsx";
 // import "./challenge.css";
-import App from "./App.tsx";
+import App from "./App-v2.tsx";
 import Challenge2 from "./Challenge2.tsx";
 
 function Test() {
@@ -26,7 +26,8 @@ function Test() {
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    {/* <App /> */}
+    <App />
+    {/* <App */}
     {/* <StarRating
       maxRating={5}
       message={["Terrible", "Bad", "Okay", "Good", "Amazing"]} */}
@@ -34,6 +35,6 @@ createRoot(document.getElementById("root")!).render(
     {/* <StarRating size={24} color="red" defaultRating={3}></StarRating> */}
     {/* <Test></Test> */}
     {/* <Challenge></Challenge> */}
-    <Challenge2></Challenge2>
+    {/* <Challenge2></Challenge2> */}
   </StrictMode>
 );
