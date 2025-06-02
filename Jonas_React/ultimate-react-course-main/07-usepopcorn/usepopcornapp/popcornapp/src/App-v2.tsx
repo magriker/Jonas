@@ -213,19 +213,24 @@ const Search = ({ query, setQuery }) => {
   // }, []);
 
   const inputEl = useRef(null);
-  useEffect(function () {
-    function callBack(e) {
-      if (e.code === "Enter") {
-        console.log(inputEl.current);
-        inputEl.current.focus();
-        setQuery("");
+  useEffect(
+    function () {
+      function callBack(e) {
+        if (document.activeElement === inputEl.current) return;
+
+        if (e.code === "Enter") {
+          console.log(inputEl.current);
+          inputEl.current.focus();
+          setQuery("");
+        }
       }
-    }
 
-    document.addEventListener("keydown", callBack);
+      document.addEventListener("keydown", callBack);
 
-    return () => document.addEventListener("keydown", callBack);
-  });
+      return () => document.addEventListener("keydown", callBack);
+    },
+    [setQuery]
+  );
 
   return (
     <input
