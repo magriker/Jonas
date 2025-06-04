@@ -7,6 +7,7 @@ import StarRating from "./StarRating.tsx";
 // import "./challenge.css";
 import App from "./App-v2.tsx";
 import Challenge2 from "./Challenge2.tsx";
+import Challenge3 from "./challenge3.tsx";
 
 function Test() {
   const [movieRating, setMovieRating] = useState(0);
@@ -26,7 +27,8 @@ function Test() {
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <Challenge3></Challenge3>
+    {/* <App /> */}
     {/* <App */}
     {/* <StarRating
       maxRating={5}
